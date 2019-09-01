@@ -384,9 +384,9 @@ describe('io', () => {
 
 # Documentation
 
-- [Docs](https://macoolka.github.io/macoolka-predicate)
-- [API Reference](https://macoolka.github.io/macoolka-predicate/docs/Modules)
-- [API Reference (中文)](https://macoolka.github.io/macoolka-predicate/docs/模块)
+- [Docs](https://macoolka.github.io/macoolka-io)
+- [API Reference](https://macoolka.github.io/macoolka-io/docs/Modules)
+- [API Reference (中文)](https://macoolka.github.io/macoolka-io/docs/模块)
 
 
 # License
