@@ -1,3 +1,18 @@
+<p align="center">
+I18N Runtime type system for IO decoding/encoding.
+</p>
+
+<p align="center">
+  <a href="https://travis-ci.org/macoolka/macoolka-io">
+    <img src="https://img.shields.io/travis/macoolka/macoolka-io/master.svg?style=flat-square" alt="build status" height="20">
+  </a>
+  <a href="https://david-dm.org/macoolka-io">
+    <img src="https://img.shields.io/david/macoolka/macoolka-io.svg?style=flat-square" alt="dependency status" height="20">
+  </a>
+  <a href="https://www.npmjs.com/package/macoolka-io">
+    <img src="https://img.shields.io/npm/dm/macoolka-io.svg" alt="npm downloads" height="20">
+  </a>
+</p>
 
 # macoolka-io
 
@@ -8,6 +23,17 @@ It extend on [io-ts](https://github.com/gcanti/io-ts).
 It suport i18n.
 
 It provide some common type 
+
+
+**Table of contents**
+
+- [Installation](#installation)
+- [Documentation](#documentation)
+- [License](#license)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+
 
 **Inspired by**
 
@@ -23,7 +49,7 @@ npm install macoolka-io
 ```
 
 
-## Consuming macoolka-io
+# Consuming 
 
 Format a i18n message (english)
 
@@ -354,6 +380,15 @@ describe('io', () => {
 });
 
 ```
+
+
+# Documentation
+
+- [Docs](https://macoolka.github.io/macoolka-predicate)
+- [API Reference](https://macoolka.github.io/macoolka-predicate/docs/Modules)
+- [API Reference (中文)](https://macoolka.github.io/macoolka-predicate/docs/模块)
+
+
 # License
 
 The MIT License (MIT)
