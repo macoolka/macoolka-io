@@ -1,6 +1,6 @@
 {
   "name": "macoolka-io",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "files": [
@@ -21,9 +21,9 @@
   },
   "dependencies": {
     "fp-ts": "^2.0.2",
-    "macoolka-object": "^0.2.1",
     "io-ts": "^2.0.1",
     "macoolka-i18n": "^0.2.0",
+    "macoolka-object": "^0.2.1",
     "macoolka-predicate": "^0.2.1"
   },
   "devDependencies": {
@@ -55,7 +55,6 @@
     },
     "testRegex": "(./src/*|\\.(test|spec))\\.(ts|tsx)$"
   },
-  
   "repository": {
     "type": "git",
     "url": "https://github.com/macoolka/macoolka-io.git"
