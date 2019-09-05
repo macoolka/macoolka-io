@@ -1,6 +1,7 @@
 import * as t from '../i18nIO'
 import * as E from 'fp-ts/lib/Either'
 import { pipe } from 'fp-ts/lib/pipeable'
+import buildI18n from 'macoolka-i18n'
 export const defaultOption = {
     defaultLanguage: 'en',
     locale: 'en',
@@ -14,6 +15,7 @@ export const defaultOption = {
         },
     }
 }
+const customerI18n=buildI18n(defaultOption)
 /**
  * Customer a i18n codec
  */
@@ -25,12 +27,12 @@ const customer = new t.Type<string>(
             t.string.validate(u, c),
             E.chain(_ => {
                 return u === 'abc' ?
-                    t.failMessage<string>([{
+                    t.failMessage<string>(customerI18n({
                         id: 'macoolka.customer.error',
                         value: {
                             value: u
                         }
-                    }], c)
+                    }), c)
                     : t.success<any>(u)
             })
         )

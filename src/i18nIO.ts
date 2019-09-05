@@ -11,17 +11,18 @@ import * as O from 'fp-ts/lib/Option'
 import { MessageInfo, MonidI18N } from 'macoolka-i18n'
 import * as A from 'fp-ts/lib/Array'
 export * from './io'
-import { isObject } from 'macoolka-predicate'
+import { isObject, isArray } from 'macoolka-predicate'
 import { get } from 'macoolka-object'
+export type ErrorMessage=Array<MessageInfo> | MonidI18N
 /**
  * @since 0.2.0
  */
 export type MessageValue = {
   _kind: 'message',
-  messages: Array<MessageInfo>
+  messages: ErrorMessage
 }
 const isMessageValue = (a: unknown): a is MessageValue => {
-  return isObject(a) && get(a,'_kind') === 'message'
+  return isObject(a) && get(a, '_kind') === 'message'
 }
 /**
  * Parse Erros(contains message) to MonidI18N
@@ -30,7 +31,7 @@ const isMessageValue = (a: unknown): a is MessageValue => {
  * @since 0.2.0
  */
 export const show = (as: t.Errors): MonidI18N => p => {
-   return t.show(as, {
+  return t.show(as, {
     showDecoder: type => {
       return pipe(
         type,
@@ -43,8 +44,12 @@ export const show = (as: t.Errors): MonidI18N => p => {
       O.fromPredicate(isMessageValue),
       O.map(v => pipe(
         v.messages,
-        A.map(message => showMessageInfo(message)(p)),
-        as => as.join('\n')
+        a => isArray(a)
+          ? pipe(
+            a,
+            A.map(message => showMessageInfo(message)(p)),
+            as => as.join('\n')
+          ) : a(p)
       )),
       result =>
         O.isNone(result)
@@ -60,7 +65,7 @@ export const show = (as: t.Errors): MonidI18N => p => {
 /**
  * @since 0.2.0
  */
-export const failMessage = <T>(messages: Array<MessageInfo>, context: t.Context, message?: string | undefined) =>
+export const failMessage = <T>(messages: ErrorMessage, context: t.Context, message?: string | undefined) =>
   t.failure<T>({ _kind: 'message', messages }, context, message)
 
 const showMessage = (message: Message): MonidI18N => i18n => {
@@ -72,7 +77,7 @@ const showMessage = (message: Message): MonidI18N => i18n => {
 const showMessageInfo = (message: MessageInfo): MonidI18N => i18n => {
   return monidI18N(message as any)(i18n)
 }
-const isMessageEncode = (a: unknown): a is MessageType<any> => isObject(a) && get(a,'_kind') === 'message'
+const isMessageEncode = (a: unknown): a is MessageType<any> => isObject(a) && get(a, '_kind') === 'message'
 /**
  * @since 0.2.0
  */
